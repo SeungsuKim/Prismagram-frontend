@@ -24,4 +24,4 @@ export default () => {
       </Box> : <Box>Sign up</Box>}
     </Wrapper>
   );
-}
+} 
