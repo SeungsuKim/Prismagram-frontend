@@ -30,14 +30,27 @@ export default () => {
       username: username.value,
       firstName: firstName.value,
       lastName: lastName.value
+    },
+    update: (_, { data }) => {
+      const { createAccount } = data;
+      if (!createAccount) {
+        toast.error("Can't create account")
+      } else {
+        toast.success("Account created! Log in now");
+        setTimeout(() => setAction("logIn"), 2000);
+      }
     }
   })
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (action === "logIn") {
       if (email.value !== "") {
-        requestSecret();
+        try {
+          await requestSecret();
+        } catch (e) {
+          toast.error(e.message);
+        }
       } else {
         toast.error("Email is required");
       }
@@ -48,7 +61,11 @@ export default () => {
         firstName.value !== "" &&
         lastName.value !== ""
       ) {
-        createAccount();
+        try {
+          createAccount();
+        } catch (e) {
+          toast.error(e.message);
+        }
       } else {
         toast.error("All fields are required")
       }

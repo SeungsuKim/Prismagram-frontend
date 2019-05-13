@@ -17,7 +17,7 @@ export const CREATE_ACCOUNT = gql`
       username: $username
       email: $email
       firstName: $firstName
-      lastname: $lastName
+      lastName: $lastName
     )
   }
 `;
