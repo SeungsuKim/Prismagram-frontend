@@ -19,5 +19,4 @@ export const resolvers = {
       return null;
     }
   }
-
 }
