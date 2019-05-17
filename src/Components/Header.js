@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
+import { gql } from "apollo-boost";
+import { useQuery } from 'react-apollo-hooks';
 import Input from './Input';
 import useInput from '../Hooks/useInput';
 import { Compass, HeartEmpty, User, Logo } from './Icons';
@@ -58,8 +60,20 @@ const HeaderLink = styled(Link)`
   }
 `;
 
+const ME = gql`
+{
+  me {
+    user{
+      username
+    }
+  }
+}
+`;
+
 export default withRouter(({ history }) => {
   const search = useInput("");
+  const meQuery = useQuery(ME);
+  console.log(meQuery);
   const onSearchSubit = e => {
     e.preventDefault();
     history.push(`/search?term=${search.value}`);
