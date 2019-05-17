@@ -45,7 +45,7 @@ const File = styled.div`
   background-image: url(${props => props.src});
   background-size: cover;
   background-position: center;
-  opacity: ${props => (props.showing ? 1 : 0)};
+  opacity: ${props => props.showing ? 1 : 0};
 `;
 
 const SlideButton = styled.div`

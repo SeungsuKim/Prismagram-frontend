@@ -36,7 +36,6 @@ const PostContainer = ({
     }
   }
 
-  console.log(currentItem);
   return (
     <PostPresenter
       user={user}
@@ -50,6 +49,7 @@ const PostContainer = ({
       setLikeCount={setLikeCount}
       caption={caption}
       location={location}
+      currentItem={currentItem}
       slidePrev={slidePrev}
       slideNext={slideNext}
     />
