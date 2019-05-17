@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
 import FatText from '../FatText';
 import Avatar from '../Avatar';
-import { Comment, HeartFull, HeartEmpty, Next, Prev } from '../Icons';
+import { Comment as CommentIcon, HeartFull, HeartEmpty, Next, Prev } from '../Icons';
 import DotCarousel from '../DotCarousel';
 
 const Post = styled.div`
@@ -105,6 +105,16 @@ const Textarea = styled(TextareaAutosize)`
   }
 `;
 
+const Comments = styled.ul`
+  margin-top: 10px;
+`;
+
+const Comment = styled.li`
+  margin-bottom: 7px;
+  span {
+    margin-right: 5px;
+  }
+`;
 
 export default ({
   user: { username, avatar },
@@ -113,11 +123,13 @@ export default ({
   isLiked,
   likeCount,
   createdAt,
+  comments,
   newComment,
   currentItem,
   slidePrev,
   slideNext,
-  toggleLike
+  toggleLike,
+  onKeyUp,
 }) => {
   return (
     <Post>
@@ -146,11 +158,27 @@ export default ({
         </MetaRow>
         <Buttons>
           <Button onClick={toggleLike}>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
-          <Button><Comment /></Button>
+          <Button><CommentIcon /></Button>
         </Buttons>
         <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} />
+        <Comments>
+          {comments &&
+            comments.map(comment => (
+              <Comment key={comment.id}>
+                <FatText text={comment.user.username} />
+                {comment.text}
+              </Comment>
+            ))}
+        </Comments>
         <Timestamp>{createdAt}</Timestamp>
-        <Textarea placeholder="Add a comment..." {...newComment} />
+        <form>
+          <Textarea
+            placeholder="Add a comment..."
+            onKeyUp={onKeyUp}
+            value={newComment.value}
+            onChange={newComment.onChange}
+          />
+        </form>
       </Meta>
     </Post >
   );

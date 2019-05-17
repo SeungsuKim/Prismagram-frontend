@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useMutation } from "react-apollo-hooks";
 import useInput from "../../Hooks/useInput";
@@ -59,14 +59,23 @@ const PostContainer = ({
       toast.error("Can't like/unlike the post.")
     }
   }
-
+  const onKeyUp = e => {
+    const { keyCode } = e;
+    if (keyCode === 13) {
+      e.preventDefault();
+      if (comment.value !== "") {
+        comment.setValue("");
+        addCommentMutation();
+      }
+    }
+  }
   return (
     <PostPresenter
       user={user}
       files={files}
       likeCount={likeCountState}
       isLiked={isLikedState}
-      commnets={comments}
+      comments={comments}
       newComment={comment}
       createdAt={createdAt}
       setIsLiked={setIsLiked}
@@ -77,6 +86,7 @@ const PostContainer = ({
       slidePrev={slidePrev}
       slideNext={slideNext}
       toggleLike={toggleLike}
+      onKeyUp={onKeyUp}
     />
   );
 };

@@ -24,11 +24,11 @@ const Container = styled.div`
   border-radius: 50%;
 `;
 
-const Avatar = ({ size = "sm", url }) => <Container size={size} url={url} />
+const Avatar = ({ size = "sm", url }) => <Container size={size} url={url ? url : "https://instagram.fopo2-2.fna.fbcdn.net/vp/f38c782b9a532d35259b0e15c52f5bfe/5D7C0DF1/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=instagram.fopo2-2.fna.fbcdn.net"} />
 
 Avatar.propTypes = {
   size: PropTypes.oneOf(["sm", "md", "lg"]),
-  url: PropTypes.string.isRequired
+  url: PropTypes.string
 }
 
 export default Avatar;
