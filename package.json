@@ -8,11 +8,13 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-apollo-hooks": "^0.4.5",
+    "react-autosize-textarea": "^7.0.0",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "react-toastify": "^5.1.0",
+    "rl-react-helmet": "^5.2.0",
     "styled-components": "^4.2.0",
     "styled-reset": "^2.0.8"
   },
