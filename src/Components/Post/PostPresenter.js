@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
-import Dots from "react-carousel-dots";
 import FatText from '../FatText';
 import Avatar from '../Avatar';
 import { Comment, HeartFull, HeartEmpty, Next, Prev } from '../Icons';
@@ -132,8 +131,12 @@ export default ({
           files.map((file, index) => (
             <File key={file.id} id={file.id} src={file.url} showing={index === currentItem} />
           ))}
-        <SlideButton type="prev" onClick={slidePrev}><Prev /></SlideButton>
-        <SlideButton type="next" onClick={slideNext}><Next /></SlideButton>
+        {files && files.length > 1 && (
+          <>
+            <SlideButton type="prev" onClick={slidePrev}><Prev /></SlideButton>
+            <SlideButton type="next" onClick={slideNext}><Next /></SlideButton>
+          </>
+        )}
       </Files>
       <Meta>
         <MetaRow>
