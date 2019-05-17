@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
+import Dots from "react-carousel-dots";
 import FatText from '../FatText';
 import Avatar from '../Avatar';
 import { Comment, HeartFull, HeartEmpty, Next, Prev } from '../Icons';
+import DotCarousel from '../DotCarousel';
 
 const Post = styled.div`
   ${props => props.theme.whiteBox}
@@ -46,6 +48,7 @@ const File = styled.div`
   background-size: cover;
   background-position: center;
   opacity: ${props => props.showing ? 1 : 0};
+  transition: opacity 0.2s linear;
 `;
 
 const SlideButton = styled.div`
@@ -53,8 +56,9 @@ const SlideButton = styled.div`
   position: absolute;
   top: 50%;
   ${props => props.type === "prev" ? "left: 10px" : "right: 10px"};
-  opacity: 1;
+  opacity: 0.7;
 `;
+
 
 const Button = styled.span`
   cursor: pointer;
@@ -62,6 +66,14 @@ const Button = styled.span`
 
 const Meta = styled.div`
   padding: 15px;
+  position: relative;
+`;
+
+const MetaRow = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  width: 100%;
 `;
 
 const Buttons = styled.div`
@@ -125,6 +137,9 @@ export default ({
         <SlideButton type="next" onClick={slideNext}><Next /></SlideButton>
       </Files>
       <Meta>
+        <MetaRow>
+          <DotCarousel length={files.length} active={currentItem} />
+        </MetaRow>
         <Buttons>
           <Button>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
           <Button><Comment /></Button>
