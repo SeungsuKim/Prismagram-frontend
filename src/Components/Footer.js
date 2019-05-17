@@ -30,46 +30,46 @@ const Copyright = styled.span`
 `;
 
 export default () => (
-  <Footer>
-    <List>
-      <ListItem>
-        <Link href="#">about us</Link>
+  <Footer >
+    <List >
+      <ListItem >
+        <Link href="#" > about us </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">support</Link>
+      <ListItem >
+        <Link href="#" > support </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">press</Link>
+      <ListItem >
+        <Link href="#" > press </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">api</Link>
+      <ListItem >
+        <Link href="#" > api </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">jobs</Link>
+      <ListItem >
+        <Link href="#" > jobs </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">privacy</Link>
+      <ListItem >
+        <Link href="#" > privacy </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">terms</Link>
+      <ListItem >
+        <Link href="#" > terms </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">directory</Link>
+      <ListItem >
+        <Link href="#" > directory </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">profiles</Link>
+      <ListItem >
+        <Link href="#" > profiles </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">hashtags</Link>
+      <ListItem >
+        <Link href="#" > hashtags </Link>
       </ListItem>
-      <ListItem>
-        <Link href="#">language</Link>
+      <ListItem >
+        <Link href="#" > language </Link>
       </ListItem>
     </List>
-    <Copyright>
-      Prismagram {new Date().getFullYear()} &copy;
+    <Copyright >
+      Prismagram {
+        new Date().getFullYear()
+      } &copy;
     </Copyright>
   </Footer>
 )
-
-

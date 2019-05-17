@@ -11,11 +11,25 @@ const Container = styled.input`
   font-size: 12px;
 `;
 
-const Input = ({ placeholder, required = true, value, onChange, type }) => (
-  <Container placeholder={placeholder} required={required} value={value} onChange={onChange} type={type} />
-)
+const Input = ({
+  className,
+  placeholder,
+  required = true,
+  value,
+  onChange,
+  type }) => (
+    <Container
+      className={className}
+      placeholder={placeholder}
+      required={required}
+      value={value}
+      onChange={onChange}
+      type={type}
+    />
+  )
 
 Input.propTypes = {
+  className: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   required: PropTypes.bool,
   value: PropTypes.string.isRequired,
