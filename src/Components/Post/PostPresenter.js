@@ -59,7 +59,6 @@ const SlideButton = styled.div`
   opacity: 0.7;
 `;
 
-
 const Button = styled.span`
   cursor: pointer;
 `;
@@ -138,7 +137,7 @@ export default ({
       </Files>
       <Meta>
         <MetaRow>
-          <DotCarousel length={files.length} active={currentItem} />
+          {files && files.length > 1 && <DotCarousel length={files.length} active={currentItem} />}
         </MetaRow>
         <Buttons>
           <Button>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
