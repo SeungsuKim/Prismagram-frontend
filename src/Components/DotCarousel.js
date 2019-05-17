@@ -21,16 +21,14 @@ const Dot = styled.div`
   }
 `;
 
-const DotCarousel = ({ length, active, size = 7, margin = 5 }) => {
-  console.log(lodash.times(length, Number));
-  return (
-    <Container>
-      {lodash.times(length, Number).map(index => (
-        <Dot key={index} size={size} margin={margin} active={index === active} />
-      ))}
-    </Container>
-  );
-}
+const DotCarousel = ({ length, active, size = 7, margin = 5 }) => (
+  <Container>
+    {lodash.times(length, Number).map(index => (
+      <Dot key={index} size={size} margin={margin} active={index === active} />
+    ))}
+  </Container>
+);
+
 
 DotCarousel.propTypes = {
   length: PropTypes.number.isRequired,

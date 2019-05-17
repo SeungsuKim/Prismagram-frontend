@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useMutation } from "react-apollo-hooks";
 import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
+import { TOOGLE_LIKE, ADD_COMMENT } from "./PostQueries";
+import { toast } from "react-toastify";
 
 const PostContainer = ({
   id,
@@ -18,6 +21,12 @@ const PostContainer = ({
   const [likeCountState, setLikeCount] = useState(likeCount);
   const [currentItem, setCurrentItem] = useState(0);
   const comment = useInput("");
+  const toggleLikeMutation = useMutation(TOOGLE_LIKE, {
+    variables: { postId: id }
+  });
+  const addCommentMutation = useMutation(ADD_COMMENT, {
+    variables: { postId: id, text: comment.value }
+  })
 
   const slideNext = () => {
     const totalFiles = files.length;
@@ -33,6 +42,21 @@ const PostContainer = ({
       setCurrentItem(totalFiles - 1);
     } else {
       setCurrentItem(currentItem - 1);
+    }
+  }
+  const toggleLike = () => {
+    if (isLikedState) {
+      setIsLiked(false);
+      setLikeCount(likeCountState - 1);
+    } else {
+      setIsLiked(true);
+      setLikeCount(likeCountState + 1);
+    }
+    try {
+      toggleLikeMutation();
+    } catch {
+      setIsLiked(!isLikedState);
+      toast.error("Can't like/unlike the post.")
     }
   }
 
@@ -52,6 +76,7 @@ const PostContainer = ({
       currentItem={currentItem}
       slidePrev={slidePrev}
       slideNext={slideNext}
+      toggleLike={toggleLike}
     />
   );
 };

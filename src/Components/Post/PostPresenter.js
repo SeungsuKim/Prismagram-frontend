@@ -11,6 +11,7 @@ const Post = styled.div`
   width: 100%;
   max-width: 600px;
   margin-bottom: 25px;
+  user-select: none;
 `;
 
 const Header = styled.header`
@@ -115,7 +116,8 @@ export default ({
   newComment,
   currentItem,
   slidePrev,
-  slideNext
+  slideNext,
+  toggleLike
 }) => {
   return (
     <Post>
@@ -143,7 +145,7 @@ export default ({
           {files && files.length > 1 && <DotCarousel length={files.length} active={currentItem} />}
         </MetaRow>
         <Buttons>
-          <Button>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
+          <Button onClick={toggleLike}>{isLiked ? <HeartFull /> : <HeartEmpty />}</Button>
           <Button><Comment /></Button>
         </Buttons>
         <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} />
