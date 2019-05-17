@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   max-width: ${props => props.theme.maxWidth};
   width: 100%;
+  margin-top: 140px;
 `;
 
 export default () => {
@@ -31,7 +32,7 @@ export default () => {
       <>
         <GlobalStyles />
         <Router>
-          <Header />
+          {isLoggedIn && <Header />}
           <Wrapper>
             <Routes isLoggedIn={isLoggedIn} />
             <Footer />

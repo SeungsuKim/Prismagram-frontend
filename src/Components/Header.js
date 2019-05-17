@@ -10,14 +10,18 @@ import { Compass, HeartEmpty, User, Logo } from './Icons';
 const Header = styled.header`
   width: 100%;
   border: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
   border-bottom: ${props => props.theme.boxBorder};
   border-radius: 0px;
-  margin-bottom: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 25px 0px;
-  background-color: white;
+  overflow: hidden;
+  z-index: 2;
 `;
 
 const HeaderWrapper = styled.div`
