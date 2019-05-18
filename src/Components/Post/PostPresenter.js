@@ -119,6 +119,7 @@ const Comment = styled.li`
 
 export default ({
   user: { username, avatar },
+  caption,
   location,
   files,
   isLiked,
@@ -164,6 +165,12 @@ export default ({
         </Buttons>
         <FatText text={likeCount === 1 ? "1 like" : `${likeCount} likes`} />
         <Comments>
+          {caption &&
+            <Comment>
+              <FatText text={username} />
+              {caption}
+            </Comment>
+          }
           {comments &&
             comments.map(comment => (
               <Comment key={comment.id}>
