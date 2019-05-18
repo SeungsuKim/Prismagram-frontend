@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { useQuery } from 'react-apollo-hooks';
+import { useQuery } from "react-apollo-hooks";
 import { ME } from "../sharedQueries";
-import Input from './Input';
-import useInput from '../Hooks/useInput';
-import { Compass, HeartEmpty, User, Logo } from './Icons';
+import Input from "./Input";
+import useInput from "../Hooks/useInput";
+import { Compass, HeartEmpty, User, Logo } from "./Icons";
 
 const Header = styled.header`
   width: 100%;
@@ -21,7 +21,7 @@ const Header = styled.header`
   align-items: center;
   padding: 25px 0px;
   overflow: hidden;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const HeaderWrapper = styled.div`
@@ -70,7 +70,7 @@ export default withRouter(({ history }) => {
   const onSearchSubit = e => {
     e.preventDefault();
     history.push(`/search?term=${search.value}`);
-  }
+  };
   return (
     <Header>
       <HeaderWrapper>
@@ -100,10 +100,10 @@ export default withRouter(({ history }) => {
               <User />
             </HeaderLink>
           ) : (
-              <HeaderLink to={`/${data.me.username}`}>
-                <User />
-              </HeaderLink>
-            )}
+            <HeaderLink to={`/${data.me.username}`}>
+              <User />
+            </HeaderLink>
+          )}
         </HeaderColumn>
       </HeaderWrapper>
     </Header>

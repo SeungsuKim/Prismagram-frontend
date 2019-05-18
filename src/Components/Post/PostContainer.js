@@ -81,7 +81,7 @@ const PostContainer = ({
       }
     }
   };
-  console.log(commentLoading);
+
   return (
     <PostPresenter
       user={user}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import TextareaAutosize from "react-autosize-textarea";
 import FatText from "../FatText";
@@ -20,6 +21,9 @@ const Post = styled.div`
   max-width: 600px;
   margin-bottom: 25px;
   user-select: none;
+  a {
+    color: inherit;
+  }
 `;
 
 const Header = styled.header`
@@ -156,7 +160,9 @@ export default ({
       <Header>
         <Avatar size="sm" url={avatar} />
         <UserColumn>
-          <FatText text={username} />
+          <Link to={`/${username}`}>
+            <FatText text={username} />
+          </Link>
           <Location>{location}</Location>
         </UserColumn>
       </Header>

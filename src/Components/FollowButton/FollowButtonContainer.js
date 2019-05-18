@@ -5,7 +5,7 @@ import { FOLLOW, UNFOLLOW } from "./FollowButtonQueries";
 import FollowButtonPresenter from "./FollowButtonPresenter";
 import { toast } from "react-toastify";
 
-const FollowButtonContainer = ({ isFollowing, id }) => {
+const FollowButtonContainer = ({ className, isFollowing, id }) => {
   const [isFollowingState, setIsFollowingState] = useState(isFollowing);
 
   const followMutation = useMutation(FOLLOW, { variables: { id } });
@@ -32,11 +32,16 @@ const FollowButtonContainer = ({ isFollowing, id }) => {
   };
 
   return (
-    <FollowButtonPresenter isFollowing={isFollowingState} onClick={onClick} />
+    <FollowButtonPresenter
+      className={className}
+      isFollowing={isFollowingState}
+      onClick={onClick}
+    />
   );
 };
 
 FollowButtonContainer.propTypes = {
+  className: PropTypes.string,
   isFollowing: PropTypes.bool.isRequired,
   id: PropTypes.string.isRequired
 };
