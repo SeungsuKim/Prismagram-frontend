@@ -9,7 +9,13 @@ const Wrapper = styled.div`
   height: 50vh;
 `;
 
-const Section = styled.div``;
+const Section = styled.div`
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 160px;
+  margin-bottom: 50px;
+`;
 
 const SearchPresenter = ({ term, loading, data }) => {
   if (!term) {
@@ -35,6 +41,7 @@ const SearchPresenter = ({ term, loading, data }) => {
           ) : (
             data.searchUser.map(user => (
               <UserCard
+                key={user.id}
                 username={user.username}
                 isFollowing={user.isFollowing}
                 url={user.avatar}
@@ -57,7 +64,26 @@ const SearchPresenter = ({ term, loading, data }) => {
 
 SearchPresenter.propTypes = {
   term: PropTypes.string,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.shape({
+    searchPost: PropTypes.arrayOf(
+      PropTypes.shape({
+        likeCount: PropTypes.number.isRequired,
+        files: PropTypes.arrayOf(
+          PropTypes.shape({ url: PropTypes.string.isRequired })
+        )
+      })
+    ),
+    searchUser: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        avatar: PropTypes.string.isRequired,
+        isFollowing: PropTypes.bool.isRequired,
+        isSelf: PropTypes.bool.isRequired,
+        username: PropTypes.string.isRequired
+      })
+    )
+  })
 };
 
 export default SearchPresenter;
