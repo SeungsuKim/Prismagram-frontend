@@ -7,6 +7,7 @@ import Avatar from "../../Components/Avatar";
 import FatText from "../../Components/FatText";
 import FollowButton from "../../Components/FollowButton";
 import PostCard from "../../Components/PostCard";
+import Button from "../../Components/Button";
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -79,7 +80,7 @@ const Posts = styled.div`
   }
 `;
 
-const ProfilePresenter = ({ loading, data }) => {
+const ProfilePresenter = ({ loading, data, logout }) => {
   if (loading) {
     return (
       <Wrapper>
@@ -118,6 +119,7 @@ const ProfilePresenter = ({ loading, data }) => {
               {!isSelf && (
                 <ExtendedFollowButton id={id} isFollowing={isFollowing} />
               )}
+              {isSelf && <Button text="Logout" onClick={logout} />}
             </UsernameRow>
             <Counts>
               <Count>
@@ -155,6 +157,7 @@ const ProfilePresenter = ({ loading, data }) => {
 
 ProfilePresenter.propTypes = {
   loading: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
   data: PropTypes.shape({
     seeUser: PropTypes.shape({
       id: PropTypes.string.isRequired,

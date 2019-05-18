@@ -1,6 +1,6 @@
 export const defaults = {
   isLoggedIn: Boolean(localStorage.getItem("token")) || false
-}
+};
 
 export const resolvers = {
   Mutation: {
@@ -15,8 +15,8 @@ export const resolvers = {
     },
     logUserOut: (_, __, { cache }) => {
       localStorage.removeItem("token");
-      window.location.reload();
+      window.location = "/";
       return null;
     }
   }
-}
+};
