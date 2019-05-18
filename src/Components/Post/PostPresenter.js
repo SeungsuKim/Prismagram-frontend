@@ -5,6 +5,7 @@ import FatText from '../FatText';
 import Avatar from '../Avatar';
 import { Comment as CommentIcon, HeartFull, HeartEmpty, Next, Prev } from '../Icons';
 import DotCarousel from '../DotCarousel';
+import Timestamp from '../Timestamp';
 
 const Post = styled.div`
   ${props => props.theme.whiteBox}
@@ -84,9 +85,9 @@ const Buttons = styled.div`
   }
 `;
 
-const Timestamp = styled.span`
+const TimestampContainer = styled.span`
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
   opacity: 0.5;
   display: block;
@@ -178,7 +179,9 @@ export default ({
               </Comment>
             ))}
         </Comments>
-        <Timestamp>{createdAt}</Timestamp>
+        <TimestampContainer>
+          <Timestamp createdAt={createdAt} />
+        </TimestampContainer>
         <form>
           <Textarea
             placeholder="Add a comment..."
