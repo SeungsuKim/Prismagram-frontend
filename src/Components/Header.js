@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { gql } from "apollo-boost";
 import { useQuery } from 'react-apollo-hooks';
+import { ME } from "../sharedQueries";
 import Input from './Input';
 import useInput from '../Hooks/useInput';
 import { Compass, HeartEmpty, User, Logo } from './Icons';
@@ -62,14 +62,6 @@ const HeaderLink = styled(Link)`
   &:not(:last-child) {
     margin-right: 30px;
   }
-`;
-
-const ME = gql`
-{
-  me {
-    username
-  }
-}
 `;
 
 export default withRouter(({ history }) => {

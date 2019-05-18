@@ -20,7 +20,9 @@ const PostContainer = ({
   const [isLikedState, setIsLiked] = useState(isLiked);
   const [likeCountState, setLikeCount] = useState(likeCount);
   const [currentItem, setCurrentItem] = useState(0);
+  const [selfComments, setSelfComments] = useState([]);
   const comment = useInput("");
+
   const toggleLikeMutation = useMutation(TOOGLE_LIKE, {
     variables: { postId: id }
   });
@@ -59,13 +61,20 @@ const PostContainer = ({
       toast.error("Can't like/unlike the post.")
     }
   }
-  const onKeyUp = e => {
-    const { keyCode } = e;
-    if (keyCode === 13) {
+  const onKeyPress = async e => {
+    const { which } = e;
+    if (which === 13) {
       e.preventDefault();
       if (comment.value !== "") {
+        try {
+          const {
+            data: { addComment }
+          } = await addCommentMutation();
+          setSelfComments([...selfComments, addComment]);
+        } catch {
+          toast.error("Can't add comment");
+        }
         comment.setValue("");
-        addCommentMutation();
       }
     }
   }
@@ -86,7 +95,8 @@ const PostContainer = ({
       slidePrev={slidePrev}
       slideNext={slideNext}
       toggleLike={toggleLike}
-      onKeyUp={onKeyUp}
+      onKeyPress={onKeyPress}
+      selfComments={selfComments}
     />
   );
 };

@@ -129,7 +129,8 @@ export default ({
   slidePrev,
   slideNext,
   toggleLike,
-  onKeyUp,
+  onKeyPress,
+  selfComments
 }) => {
   return (
     <Post>
@@ -169,12 +170,19 @@ export default ({
                 {comment.text}
               </Comment>
             ))}
+          {selfComments &&
+            selfComments.map(comment => (
+              <Comment key={comment.id}>
+                <FatText text={comment.user.username} />
+                {comment.text}
+              </Comment>
+            ))}
         </Comments>
         <Timestamp>{createdAt}</Timestamp>
         <form>
           <Textarea
             placeholder="Add a comment..."
-            onKeyUp={onKeyUp}
+            onKeyPress={onKeyPress}
             value={newComment.value}
             onChange={newComment.onChange}
           />
